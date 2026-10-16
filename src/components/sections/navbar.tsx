@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 
 const links = [
   { href: "#sobre", label: "Sobre nós" },
+  { href: "#frota", label: "Frota" },
   { href: "#contato", label: "Contato" },
 ];
 
@@ -34,8 +35,12 @@ export function Navbar() {
             : "border-transparent bg-transparent",
         )}
       >
-        <a href="#inicio" aria-label={`${site.name} — início`}>
-          <Logo />
+        <a
+          href="#inicio"
+          aria-label={`${site.name} — início`}
+          className={cn("transition-opacity duration-300", scrolled ? "opacity-100" : "pointer-events-none opacity-0")}
+        >
+          <Logo className="-my-1 h-12" />
         </a>
         <div className="flex items-center gap-1 sm:gap-2">
           {links.map((l) => (

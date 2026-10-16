@@ -40,14 +40,19 @@ export function ContactForm() {
           <Input id="phone" name="phone" type="tel" placeholder="(00) 00000-0000" autoComplete="tel" aria-invalid={!!err.phone} />
         </Field>
       </div>
-      <Field id="email" label="E-mail" error={err.email}>
-        <Input id="email" name="email" type="email" placeholder="voce@email.com" autoComplete="email" aria-invalid={!!err.email} required />
-      </Field>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <Field id="email" label="E-mail" error={err.email}>
+          <Input id="email" name="email" type="email" placeholder="voce@empresa.com.br" autoComplete="email" aria-invalid={!!err.email} required />
+        </Field>
+        <Field id="companyName" label="Empresa" optional>
+          <Input id="companyName" name="companyName" placeholder="Nome da empresa" autoComplete="organization" />
+        </Field>
+      </div>
       <Field id="message" label="Mensagem" error={err.message}>
         <Textarea
           id="message"
           name="message"
-          placeholder="Qual carro você procura, datas e por quanto tempo?"
+          placeholder="Quantas picapes, para qual uso e por quanto tempo?"
           aria-invalid={!!err.message}
           required
         />

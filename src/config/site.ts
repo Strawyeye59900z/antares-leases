@@ -4,38 +4,85 @@
  */
 export const site = {
   name: "Antares Leases",
-  tagline: "Aluguel de carros",
+  tagline: "Locação de picapes para empresas",
   description:
-    "Aluguel de carros com atendimento próximo e sem complicação. Fale com a Antares Leases e encontre o carro certo para você.",
+    "Locação comercial de picapes para empresas: frota revisada, contratos mensais e de longo prazo e atendimento direto. Fale com a Antares Leases.",
 
   hero: {
-    eyebrow: "Aluguel de carros",
     title: "Antares Leases",
     subtitle:
-      "O carro certo, no momento certo. Atendimento direto, contratos claros e uma frota pronta para rodar.", // TODO: confirmar texto
+      "Picapes prontas para o trabalho pesado. Contratos mensais e de longo prazo para a sua operação não parar.", // TODO: confirmar texto
   },
 
   about: {
+    heading: "Sua frota de trabalho, sem o peso de ter uma.",
     // TODO: substituir pelo texto "Sobre nós" enviado pela empresa
     paragraphs: [
-      "A Antares Leases nasceu para tornar o aluguel de carros simples e transparente. Cuidamos de cada detalhe para que você só precise se preocupar com o caminho.",
-      "Trabalhamos com atendimento próximo, do primeiro contato até a devolução do veículo, sempre com condições claras e sem surpresas.",
+      "A Antares Leases é especializada na locação de picapes para empresas. Agro, construção, energia, manutenção e logística: atendemos operações que precisam de veículos robustos todos os dias.",
+      "Com a locação, sua empresa deixa de imobilizar capital em veículos e passa a contar com manutenção, documentação e suporte incluídos, com custo mensal previsível.",
     ],
     // TODO: confirmar se estes diferenciais se aplicam
     highlights: [
-      { title: "Atendimento direto", text: "Fale com quem resolve, sem central de espera." },
-      { title: "Frota revisada", text: "Veículos com manutenção em dia antes de cada locação." },
-      { title: "Condições claras", text: "Contrato transparente, sem taxas escondidas." },
+      { title: "Custo previsível", text: "Mensalidade fixa, sem depreciação nem gastos inesperados no balanço." },
+      { title: "Manutenção inclusa", text: "Revisões em dia e veículo reserva para a operação não parar." },
+      { title: "Atendimento direto", text: "Um contato dedicado para a sua empresa, sem central de espera." },
+    ],
+  },
+
+  fleet: {
+    heading: "Picapes para cada tipo de operação.",
+    subtitle: "Montamos a frota sob medida para a sua empresa, de uma unidade a dezenas de veículos.",
+    // TODO: substituir pelos modelos reais da frota
+    items: [
+      {
+        title: "Cabine dupla",
+        text: "Leva a equipe e a ferramenta. Ideal para manutenção e serviços de campo.",
+        image: {
+          src: "https://unsplash.com/photos/6DnSGv4VZlo/download?w=1200",
+          alt: "Picape prata cabine dupla estacionada ao entardecer",
+          credit: "stevosdisposable",
+          creditHref: "https://unsplash.com/photos/6DnSGv4VZlo",
+        },
+      },
+      {
+        title: "Tração 4x4",
+        text: "Para obra, fazenda e estrada de terra, onde o asfalto acaba.",
+        image: {
+          src: "https://unsplash.com/photos/o7fqZ18YFXc/download?w=1200",
+          alt: "Picape bege com rodas pretas em estrada de terra",
+          credit: "Dusty Barnes",
+          creditHref: "https://unsplash.com/photos/o7fqZ18YFXc",
+        },
+      },
+      {
+        title: "Alta capacidade de carga",
+        text: "Caçamba ampla e motor diesel para transportar material e equipamento.",
+        image: {
+          src: "https://unsplash.com/photos/G3Irirjfl8s/download?w=1200",
+          alt: "Picape grafite de frente em um pátio",
+          credit: "FourFour",
+          creditHref: "https://unsplash.com/photos/G3Irirjfl8s",
+        },
+      },
+      {
+        title: "Frota corporativa",
+        text: "Padronização visual, gestão centralizada e substituição programada.",
+        image: {
+          src: "https://unsplash.com/photos/YscocmXUTUM/download?w=1200",
+          alt: "Picape preta estacionada em um pátio",
+          credit: "Jonathan Cooper",
+          creditHref: "https://unsplash.com/photos/YscocmXUTUM",
+        },
+      },
     ],
   },
 
   contact: {
+    heading: "Vamos montar a frota ideal para a sua empresa.",
     phone: "(00) 00000-0000", // TODO
     phoneHref: "tel:+5500000000000", // TODO
     whatsappHref: "https://wa.me/5500000000000", // TODO
     email: "contato@antaresleases.com.br", // TODO
-    address: "Endereço da empresa, Cidade - UF", // TODO
-    hours: "Seg. a sex., 8h às 18h · Sáb., 8h às 12h", // TODO
   },
 
   /**
@@ -44,19 +91,20 @@ export const site = {
    */
   images: {
     hero: {
-      src: "https://unsplash.com/photos/9xhwtVIM0dE/download?w=2400",
-      credit: "Ilya Godze",
-      creditHref: "https://unsplash.com/photos/9xhwtVIM0dE",
+      src: "https://unsplash.com/photos/6VbVMrdbC14/download?w=2400",
+      credit: "Bradley Dunn",
+      creditHref: "https://unsplash.com/photos/6VbVMrdbC14",
     },
     about: {
-      src: "https://unsplash.com/photos/odmg2fspBBU/download?w=1600",
-      credit: "Hyundai Motor Group",
-      creditHref: "https://unsplash.com/photos/odmg2fspBBU",
+      src: "https://unsplash.com/photos/WbWxuFhDmvw/download?w=1600",
+      alt: "Picape preta parada no meio do deserto",
+      credit: "Joey Chacon",
+      creditHref: "https://unsplash.com/photos/WbWxuFhDmvw",
     },
     contact: {
-      src: "https://unsplash.com/photos/i34LTsTiUKE/download?w=2400",
-      credit: "Unsplash",
-      creditHref: "https://unsplash.com/photos/i34LTsTiUKE",
+      src: "https://unsplash.com/photos/eWhHTKQBHkE/download?w=2400",
+      credit: "Royce Fonseca",
+      creditHref: "https://unsplash.com/photos/eWhHTKQBHkE",
     },
   },
 } as const;

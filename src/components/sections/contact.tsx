@@ -1,4 +1,4 @@
-import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Mail, MessageCircle, Phone } from "lucide-react";
 
 import { Reveal } from "@/components/motion/reveal";
 import { SpotlightCard } from "@/components/motion/spotlight-card";
@@ -11,8 +11,6 @@ const items = [
   { icon: Phone, label: "Telefone", value: contact.phone, href: contact.phoneHref },
   { icon: MessageCircle, label: "WhatsApp", value: "Chamar no WhatsApp", href: contact.whatsappHref },
   { icon: Mail, label: "E-mail", value: contact.email, href: `mailto:${contact.email}` },
-  { icon: MapPin, label: "Endereço", value: contact.address },
-  { icon: Clock, label: "Horário", value: contact.hours },
 ];
 
 export function Contact() {
@@ -29,7 +27,7 @@ export function Contact() {
         <Reveal className="max-w-2xl">
           <p className="text-xs tracking-[0.25em] text-muted-foreground uppercase">Contato</p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-balance sm:text-5xl">
-            Vamos encontrar o carro ideal para você.
+            {contact.heading}
           </h2>
           <p className="mt-4 text-neutral-400 sm:text-lg">
             Envie uma mensagem ou ligue. Respondemos o mais rápido possível.

@@ -13,6 +13,7 @@ export async function sendContact(_prev: ContactState, formData: FormData): Prom
     name: String(formData.get("name") ?? "").trim(),
     email: String(formData.get("email") ?? "").trim(),
     phone: String(formData.get("phone") ?? "").trim(),
+    company: String(formData.get("companyName") ?? "").trim(),
     message: String(formData.get("message") ?? "").trim(),
   };
 
@@ -47,7 +48,7 @@ export async function sendContact(_prev: ContactState, formData: FormData): Prom
       to: [to],
       reply_to: data.email,
       subject: `Novo contato pelo site — ${data.name}`,
-      text: `Nome: ${data.name}\nE-mail: ${data.email}\nTelefone: ${data.phone || "-"}\n\n${data.message}`,
+      text: `Nome: ${data.name}\nE-mail: ${data.email}\nTelefone: ${data.phone || "-"}\nEmpresa: ${data.company || "-"}\n\n${data.message}`,
     }),
   });
 

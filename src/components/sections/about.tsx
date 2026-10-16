@@ -10,7 +10,7 @@ export function About() {
           <Reveal>
             <p className="text-xs tracking-[0.25em] text-muted-foreground uppercase">Sobre nós</p>
             <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-balance sm:text-5xl">
-              Mais que um aluguel, uma parceria no seu caminho.
+              {site.about.heading}
             </h2>
           </Reveal>
           <div className="mt-6 space-y-4 text-pretty text-neutral-400 sm:text-lg">
@@ -27,7 +27,7 @@ export function About() {
             className="aspect-[4/5] overflow-hidden rounded-2xl border bg-neutral-900 bg-cover bg-center grayscale-[35%] sm:aspect-[4/3] lg:aspect-[4/5]"
             style={{ backgroundImage: `url(${site.images.about.src})` }}
             role="img"
-            aria-label="Carro preto em uma rua da cidade à noite"
+            aria-label={site.images.about.alt}
           >
             <div className="h-full w-full bg-gradient-to-t from-black/70 via-transparent to-transparent" />
           </div>

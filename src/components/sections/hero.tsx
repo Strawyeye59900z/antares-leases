@@ -3,7 +3,7 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { ArrowRight, ChevronDown, Phone } from "lucide-react";
 
-import { ScrambleText } from "@/components/motion/scramble-text";
+import { Logo } from "@/components/logo";
 import { StarField } from "@/components/motion/star-field";
 import { Button } from "@/components/ui/button";
 import { site } from "@/config/site";
@@ -35,27 +35,21 @@ export function Hero() {
 
       <motion.div
         style={{ opacity: contentOpacity }}
-        className="mx-auto w-full max-w-6xl px-6 pt-28 pb-20"
+        className="mx-auto w-full max-w-6xl px-6 pt-28 pb-20 text-center"
       >
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs tracking-[0.25em] text-muted-foreground uppercase backdrop-blur-sm"
+        <motion.h1
+          initial={{ opacity: 0, scale: 0.94, filter: "blur(8px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 1.1, delay: 0.2, ease }}
         >
-          <span className="size-1.5 rounded-full bg-star shadow-[0_0_10px_2px] shadow-star/60" />
-          {site.hero.eyebrow}
-        </motion.p>
-
-        <h1 className="font-display text-5xl leading-[0.95] font-semibold tracking-tight text-balance sm:text-7xl lg:text-8xl">
-          <ScrambleText text={site.hero.title} delay={300} className="bg-gradient-to-b from-white to-neutral-400 bg-clip-text text-transparent" />
-        </h1>
+          <Logo preload className="mx-auto h-auto w-[min(560px,88vw)] drop-shadow-[0_8px_30px_rgba(0,0,0,0.6)]" />
+        </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9, ease }}
-          className="mt-6 max-w-xl text-lg text-pretty text-neutral-300 sm:text-xl"
+          className="mx-auto mt-6 max-w-xl text-lg text-pretty text-neutral-300 sm:text-xl"
         >
           {site.hero.subtitle}
         </motion.p>
@@ -64,7 +58,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.1, ease }}
-          className="mt-10 flex flex-col gap-3 sm:flex-row"
+          className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center"
         >
           <Button asChild size="lg" className="group rounded-full">
             <a href="#contato">
