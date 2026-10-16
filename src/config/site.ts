@@ -38,7 +38,7 @@ export const site = {
         title: "Cabine dupla",
         text: "Leva a equipe e a ferramenta. Ideal para manutenção e serviços de campo.",
         image: {
-          src: "https://unsplash.com/photos/6DnSGv4VZlo/download?w=1200",
+          src: "/photos/frota-cabine-dupla.jpg",
           alt: "Picape prata cabine dupla estacionada ao entardecer",
           credit: "stevosdisposable",
           creditHref: "https://unsplash.com/photos/6DnSGv4VZlo",
@@ -48,7 +48,7 @@ export const site = {
         title: "Tração 4x4",
         text: "Para obra, fazenda e estrada de terra, onde o asfalto acaba.",
         image: {
-          src: "https://unsplash.com/photos/o7fqZ18YFXc/download?w=1200",
+          src: "/photos/frota-4x4.jpg",
           alt: "Picape bege com rodas pretas em estrada de terra",
           credit: "Dusty Barnes",
           creditHref: "https://unsplash.com/photos/o7fqZ18YFXc",
@@ -58,7 +58,7 @@ export const site = {
         title: "Alta capacidade de carga",
         text: "Caçamba ampla e motor diesel para transportar material e equipamento.",
         image: {
-          src: "https://unsplash.com/photos/G3Irirjfl8s/download?w=1200",
+          src: "/photos/frota-carga.jpg",
           alt: "Picape grafite de frente em um pátio",
           credit: "FourFour",
           creditHref: "https://unsplash.com/photos/G3Irirjfl8s",
@@ -68,7 +68,7 @@ export const site = {
         title: "Frota corporativa",
         text: "Padronização visual, gestão centralizada e substituição programada.",
         image: {
-          src: "https://unsplash.com/photos/YscocmXUTUM/download?w=1200",
+          src: "/photos/frota-corporativa.jpg",
           alt: "Picape preta estacionada em um pátio",
           credit: "Jonathan Cooper",
           creditHref: "https://unsplash.com/photos/YscocmXUTUM",
@@ -86,23 +86,23 @@ export const site = {
   },
 
   /**
-   * Fotos do Unsplash (licença Unsplash, uso gratuito). Para usar arquivos locais,
-   * coloque-os em /public e troque por "/hero.jpg", por exemplo.
+   * Fotos do Unsplash (licença Unsplash, uso gratuito), salvas em /public/photos.
+   * Para trocar, coloque o novo arquivo em /public/photos e ajuste o caminho.
    */
   images: {
     hero: {
-      src: "https://unsplash.com/photos/6VbVMrdbC14/download?w=2400",
+      src: "/photos/hero.jpg",
       credit: "Bradley Dunn",
       creditHref: "https://unsplash.com/photos/6VbVMrdbC14",
     },
     about: {
-      src: "https://unsplash.com/photos/WbWxuFhDmvw/download?w=1600",
+      src: "/photos/about.jpg",
       alt: "Picape preta parada no meio do deserto",
       credit: "Joey Chacon",
       creditHref: "https://unsplash.com/photos/WbWxuFhDmvw",
     },
     contact: {
-      src: "https://unsplash.com/photos/eWhHTKQBHkE/download?w=2400",
+      src: "/photos/contact.jpg",
       credit: "Royce Fonseca",
       creditHref: "https://unsplash.com/photos/eWhHTKQBHkE",
     },
