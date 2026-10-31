@@ -5,20 +5,42 @@ import { AnimatePresence, motion } from "motion/react";
 import { CircleCheck, LoaderCircle, Send } from "lucide-react";
 import { toast } from "sonner";
 
-import { sendContact, type ContactState } from "@/app/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { readContact, validateContact, type ContactResponse } from "@/lib/contact";
+
+type ContactState = { status: "idle" } | ({ status: "done" } & ContactResponse);
 
 const initial: ContactState = { status: "idle" };
+
+/** Valida no navegador e envia para a função da Cloudflare em /api/contact. */
+async function sendContact(_prev: ContactState, formData: FormData): Promise<ContactState> {
+  const data = readContact(Object.fromEntries(formData));
+  const errors = validateContact(data);
+  if (Object.keys(errors).length) return { status: "done", ok: false, errors };
+
+  try {
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    const body = (await res.json().catch(() => null)) as ContactResponse | null;
+    return { status: "done", ...(body ?? { ok: false, message: "Não foi possível enviar agora. Tente novamente ou ligue para nós." }) };
+  } catch {
+    return { status: "done", ok: false, message: "Sem conexão. Verifique sua internet e tente novamente." };
+  }
+}
 
 export function ContactForm() {
   const [state, action, pending] = useActionState(sendContact, initial);
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    if (state.status === "success") {
+    if (state.status !== "done") return;
+    if (state.ok) {
       formRef.current?.reset();
       toast.success("Mensagem enviada!", { description: "Retornaremos o contato em breve." });
     } else if (state.message) {
@@ -26,11 +48,12 @@ export function ContactForm() {
     }
   }, [state]);
 
-  const err = state.errors ?? {};
+  const sent = state.status === "done" && state.ok;
+  const err = (state.status === "done" && !state.ok && state.errors) || {};
 
   return (
     <form ref={formRef} action={action} noValidate className="grid gap-5">
-      <input type="text" name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
 
       <div className="grid gap-5 sm:grid-cols-2">
         <Field id="name" label="Nome" error={err.name}>
@@ -44,8 +67,8 @@ export function ContactForm() {
         <Field id="email" label="E-mail" error={err.email}>
           <Input id="email" name="email" type="email" placeholder="voce@empresa.com.br" autoComplete="email" aria-invalid={!!err.email} required />
         </Field>
-        <Field id="companyName" label="Empresa" optional>
-          <Input id="companyName" name="companyName" placeholder="Nome da empresa" autoComplete="organization" />
+        <Field id="company" label="Empresa" optional>
+          <Input id="company" name="company" placeholder="Nome da empresa" autoComplete="organization" />
         </Field>
       </div>
       <Field id="message" label="Mensagem" error={err.message}>
@@ -61,7 +84,7 @@ export function ContactForm() {
       <Button type="submit" size="lg" disabled={pending} className="group mt-1 rounded-full">
         <AnimatePresence mode="wait" initial={false}>
           <motion.span
-            key={pending ? "pending" : state.status === "success" ? "ok" : "idle"}
+            key={pending ? "pending" : sent ? "ok" : "idle"}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
@@ -72,7 +95,7 @@ export function ContactForm() {
               <>
                 <LoaderCircle className="size-4 animate-spin" /> Enviando…
               </>
-            ) : state.status === "success" ? (
+            ) : sent ? (
               <>
                 <CircleCheck className="size-4" /> Enviado — enviar outra
               </>

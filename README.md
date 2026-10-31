@@ -35,18 +35,44 @@ Itens marcados com `TODO` em `src/config/site.ts` ainda precisam das informaçõ
 
 ## Formulário de contato (envio por e-mail)
 
-O formulário envia as mensagens por e-mail usando o [Resend](https://resend.com) (tem plano gratuito).
+O formulário envia as mensagens por e-mail usando o [Resend](https://resend.com) (plano gratuito: 3.000 e-mails/mês).
+Quem faz o envio é uma função da Cloudflare em `functions/api/contact.ts`; a chave do Resend fica só no servidor, nunca no site.
 
-1. Crie uma conta no Resend e gere uma API key.
-2. Copie `.env.example` para `.env.local` e preencha:
-   ```
-   RESEND_API_KEY=sua_chave
-   CONTACT_TO_EMAIL=email.que.recebe@exemplo.com
-   ```
-3. Reinicie o `npm run dev`.
+**1. Configure o Resend**
+1. Crie uma conta em https://resend.com.
+2. Em **Domains → Add Domain**, adicione o domínio da empresa e crie no DNS os registros que o Resend mostrar. Quando o domínio ficar *Verified*, você pode enviar como `site@seudominio.com.br`.
+   - Sem domínio verificado, o Resend só envia para o e-mail da própria conta do Resend (bom para testar).
+3. Em **API Keys → Create API Key**, crie uma chave com permissão *Sending access* e copie (ela começa com `re_`).
 
-Sem essas variáveis, no modo de desenvolvimento a mensagem só aparece no terminal; no site publicado, o formulário avisa que está indisponível e pede para ligar.
+**2. Variáveis**
 
-## Publicar
+| Variável | O que é |
+|---|---|
+| `RESEND_API_KEY` | A chave do Resend (marque como **Secret** na Cloudflare) |
+| `CONTACT_TO_EMAIL` | Quem recebe as mensagens (pode ser mais de um, separados por vírgula) |
+| `CONTACT_FROM_EMAIL` | Remetente, ex.: `Site Antares Leases <site@seudominio.com.br>` |
 
-O jeito mais simples é a [Vercel](https://vercel.com): importe este repositório, adicione as variáveis do Resend em *Settings → Environment Variables* e faça o deploy.
+**3. Testar no seu computador**
+
+`npm run dev` mostra o site, mas não roda a função do formulário. Para testar o envio:
+1. Copie `.dev.vars.example` para `.dev.vars` e preencha as variáveis.
+2. Rode `npm run preview` e abra **http://localhost:8788**.
+
+## Publicar no Cloudflare Pages
+
+O site é exportado como páginas estáticas (pasta `out`) e o formulário roda como Pages Function.
+
+**Pelo painel, com deploy automático a cada `git push` (recomendado)**
+1. Em https://dash.cloudflare.com, abra **Workers & Pages → Create → Pages → Connect to Git** e escolha este repositório.
+2. Configurações de build:
+   - Framework preset: **None**
+   - Build command: `npm run build`
+   - Build output directory: `out`
+3. Em **Environment variables**, adicione as variáveis da tabela acima (a chave como *Encrypt*/Secret) e clique em **Save and Deploy**.
+4. Depois de publicado, em **Custom domains → Set up a custom domain**, adicione seu domínio e siga as instruções de DNS.
+
+**Pela linha de comando**
+```bash
+npx wrangler login
+npm run deploy
+```

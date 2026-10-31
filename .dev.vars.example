@@ -1,0 +1,6 @@
+# Copie para .dev.vars para testar o formulário localmente com "npm run preview".
+# No site publicado, configure estas variáveis no painel da Cloudflare.
+RESEND_API_KEY=
+CONTACT_TO_EMAIL=
+# Opcional: remetente com domínio verificado no Resend
+CONTACT_FROM_EMAIL=
